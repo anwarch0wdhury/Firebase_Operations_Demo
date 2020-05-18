@@ -1,4 +1,4 @@
-package com.anwar.uploadimage;
+package com.anwar.uploadimage.View;
 /*
  * Anwar Chowdhury
  * https://github.com/anwarch0wdhury
@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.anwar.uploadimage.R;
 import com.squareup.picasso.Picasso;
 
 

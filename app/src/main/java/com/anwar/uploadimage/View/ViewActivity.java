@@ -1,4 +1,4 @@
-package com.anwar.uploadimage;
+package com.anwar.uploadimage.View;
 
 /*
  * Anwar Chowdhury
@@ -25,6 +25,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anwar.uploadimage.Model.Image_model;
+import com.anwar.uploadimage.R;
+import com.anwar.uploadimage.Adapter.RecyclerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -40,7 +43,7 @@ import java.util.List;
 
 
 
-public class ViewActivity extends AppCompatActivity implements RecyclerAdapter.OnItemClickListener{
+public class ViewActivity extends AppCompatActivity implements RecyclerAdapter.OnItemClickListener {
 private FloatingActionButton fbtn_add;
     private RecyclerView mRecyclerView;
     private RecyclerAdapter mAdapter;

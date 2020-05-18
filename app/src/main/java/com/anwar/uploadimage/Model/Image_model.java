@@ -1,4 +1,4 @@
-package com.anwar.uploadimage;
+package com.anwar.uploadimage.Model;
 
 import com.google.firebase.database.Exclude;
 

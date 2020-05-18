@@ -1,4 +1,4 @@
-package com.anwar.uploadimage;
+package com.anwar.uploadimage.View;
 /*
 * Anwar Chowdhury
 * https://github.com/anwarch0wdhury
@@ -20,6 +20,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.anwar.uploadimage.Model.Image_model;
+import com.anwar.uploadimage.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;

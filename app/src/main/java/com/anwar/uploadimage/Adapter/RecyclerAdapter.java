@@ -1,4 +1,4 @@
-package com.anwar.uploadimage;
+package com.anwar.uploadimage.Adapter;
 
 /*-->
     <!--* Anwar Chowdhury-->
@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anwar.uploadimage.Model.Image_model;
+import com.anwar.uploadimage.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
