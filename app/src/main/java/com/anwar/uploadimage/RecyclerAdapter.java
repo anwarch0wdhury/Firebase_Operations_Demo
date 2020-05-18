@@ -1,5 +1,11 @@
 package com.anwar.uploadimage;
 
+/*-->
+    <!--* Anwar Chowdhury-->
+    <!--* https://github.com/anwarch0wdhury-->
+    <!--* Date:2020/01/28-->
+    <!--* */
+
 import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -19,12 +25,12 @@ import java.util.List;
 
 public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>{
     private Context mContext;
-    private List<Image_model> imageModels;
+    private List<Image_model> imageModelModels;
     private OnItemClickListener mListener;
 
     public RecyclerAdapter(Context context, List<Image_model> uploads) {
         mContext = context;
-        imageModels = uploads;
+        imageModelModels = uploads;
     }
 
     @Override
@@ -35,12 +41,12 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyc
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        Image_model currentImageModel = imageModels.get(position);
-        holder.tv_name.setText(currentImageModel.getName());
-        holder.tv_description.setText(currentImageModel.getDescription());
+        Image_model currentImageModelModel = imageModelModels.get(position);
+        holder.tv_name.setText(currentImageModelModel.getName());
+        holder.tv_description.setText(currentImageModelModel.getDescription());
 
         Picasso.with (mContext)
-                .load(currentImageModel.getImageUrl())
+                .load(currentImageModelModel.getImageUrl())
                 .fit()
                 .centerCrop()
                 .into(holder.imgv_photo);
@@ -50,7 +56,7 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyc
 
     @Override
     public int getItemCount() {
-        return imageModels.size();
+        return imageModelModels.size();
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,

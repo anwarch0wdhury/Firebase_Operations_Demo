@@ -53,8 +53,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/margin_2"
-        android:layout_marginBottom="@dimen/margin_2"
+        android:layout_marginRight="@dimen/margin_1"
+        android:layout_marginBottom="@dimen/margin_1"
 
         android:orientation="horizontal">
 

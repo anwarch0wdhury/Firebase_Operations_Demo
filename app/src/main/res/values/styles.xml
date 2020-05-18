@@ -1,9 +1,4 @@
 <resources>
-    <!--/*-->
-    <!--* Anwar Chowdhury-->
-    <!--* https://github.com/anwarch0wdhury-->
-    <!--* Date:2020/01/28-->
-    <!--* */-->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->

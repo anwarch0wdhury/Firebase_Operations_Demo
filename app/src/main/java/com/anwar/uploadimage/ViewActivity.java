@@ -13,6 +13,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -47,7 +48,7 @@ private FloatingActionButton fbtn_add;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
     private ValueEventListener mDBListener;
-    private List<Image_model> mImageModels;
+    private List<Image_model> mImageModelModels;
     TextView tv_view;
 
     int[] animationList = {R.anim.layout_animation_up_to_down, R.anim.layout_animation_right_to_left, R.anim.layout_animation_down_to_up, R.anim.layout_animation_left_to_right};
@@ -60,14 +61,26 @@ private FloatingActionButton fbtn_add;
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_view);
 
-        mRecyclerView = findViewById(R.id.mRecyclerView);
+
+
+
+
+
+        initAdapter();
+        populateData();
+
+
+
 
         fbtn_add =findViewById (R.id.fbtn_Add);
+        fbtn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        populateData();
-        initAdapter();
-
-
+                Intent i = new Intent(ViewActivity.this, UploadActivity.class);
+                startActivity(i);
+            }
+        });
         tv_view=findViewById (R.id.tv_view);
         tv_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,18 +93,6 @@ private FloatingActionButton fbtn_add;
                 }
                 runAnimationAgain();}
         });
-
-
-
-        fbtn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(ViewActivity.this, UploadActivity.class);
-                startActivity(i);
-            }
-        });
-
 
 
     }
@@ -108,10 +109,13 @@ private FloatingActionButton fbtn_add;
         intent.putExtra("NAME_KEY",data[0]);
         intent.putExtra("DESCRIPTION_KEY",data[1]);
         intent.putExtra("IMAGE_KEY",data[2]);
+        Log.e (String.valueOf (ViewActivity.this),"Clickedddd");
         startActivity(intent);
     }
 
     private void initAdapter() {
+
+        mRecyclerView = findViewById(R.id.mRecyclerView);
         mRecyclerView.setHasFixedSize(true);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager (this));
@@ -119,10 +123,11 @@ private FloatingActionButton fbtn_add;
         mProgressBar = findViewById(R.id.myDataLoaderProgressBar);
         mProgressBar.setVisibility(View.VISIBLE);
 
-        mImageModels = new ArrayList<> ();
+        mImageModelModels = new ArrayList<> ();
 
-        mAdapter = new RecyclerAdapter (ViewActivity.this, mImageModels);
+        mAdapter = new RecyclerAdapter (ViewActivity.this, mImageModelModels);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(ViewActivity.this);
 
     }
 
@@ -137,12 +142,12 @@ private FloatingActionButton fbtn_add;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                mImageModels.clear();
+                mImageModelModels.clear();
 
                 for (DataSnapshot imageSnapshot : dataSnapshot.getChildren()) {
                     Image_model upload = imageSnapshot.getValue(Image_model.class);
                     upload.setKey(imageSnapshot.getKey());
-                    mImageModels.add(upload);
+                    mImageModelModels.add(upload);
                 }
                 mAdapter.notifyDataSetChanged();
                 mProgressBar.setVisibility(View.GONE);
@@ -173,22 +178,22 @@ private FloatingActionButton fbtn_add;
 
 
     public void onItemClick(int position) {
-        Image_model clickedImageModel = mImageModels.get(position);
-        String[] imageData ={clickedImageModel.getName(), clickedImageModel.getDescription(), clickedImageModel.getImageUrl()};
+        Image_model clickedImageModelModel = mImageModelModels.get(position);
+        String[] imageData ={clickedImageModelModel.getName(), clickedImageModelModel.getDescription(), clickedImageModelModel.getImageUrl()};
 
         openDetailActivity(imageData);
     }
 
     @Override
     public void onShowItemClick(int position) {
-        Image_model clickedImageModel = mImageModels.get(position);
-        String[] imageData ={clickedImageModel.getName(), clickedImageModel.getDescription(), clickedImageModel.getImageUrl()};
+        Image_model clickedImageModelModel = mImageModelModels.get(position);
+        String[] imageData ={clickedImageModelModel.getName(), clickedImageModelModel.getDescription(), clickedImageModelModel.getImageUrl()};
         openDetailActivity(imageData);
     }
 
     @Override
     public void onDeleteItemClick(int position) {
-        Image_model selectedItem = mImageModels.get(position);
+        Image_model selectedItem = mImageModelModels.get(position);
         final String selectedKey = selectedItem.getKey();
 
         StorageReference imageRef = mStorage.getReferenceFromUrl(selectedItem.getImageUrl());
@@ -204,7 +209,7 @@ private FloatingActionButton fbtn_add;
 
     @Override
     public void onCopyItemClick(int position) {
-        Image_model selectedItem = mImageModels.get(position);
+        Image_model selectedItem = mImageModelModels.get(position);
 
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("URL", selectedItem.getImageUrl());
