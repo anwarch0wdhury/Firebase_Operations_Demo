@@ -4,7 +4,7 @@ This is a Simple Firebase operations demo app.
 
 ## About this app
 
-Specialy it is made for uploading image in the firebase from my Android mobile storage. Inserting Name, Description and Image in Firebase. 
+Especialy it is made for uploading image in the firebase from my Android mobile storage. Inserting Name, Description and Image in Firebase. 
 Images are uploaded in the Firebase Storage. Image storage url, name and decription are inserted in the Realtime Database.
 # Basic Features:
 -**Data Inserting** 
@@ -24,10 +24,11 @@ On click an item a menu will appear. User can choose
 ### Prerequisites
 
 Android Studio.
+
 Gmail account.
 
-# Installing
-## Firebase setup in the project.
+## Installing
+# Firebase setup in the project.
 1. Create a new project in the Android Studio.
 2. Now open the android studio and click on Tools in the upper left corner.
 3. Now click on the Firebase option in the drop down menu.
